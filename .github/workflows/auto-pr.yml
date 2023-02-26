@@ -21,7 +21,7 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
           commit-message: Test Auto-PR
-          author: ${{ github.actor }} 
+          author: Mike Wu <mike@v-capital.org>
           signoff: false
           branch: example-patches
           delete-branch: true
