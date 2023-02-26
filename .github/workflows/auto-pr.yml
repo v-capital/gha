@@ -1,0 +1,38 @@
+name: Auto-PR Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Make changes to pull request
+        run: date +%s > test.txt
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.PAT }}
+          commit-message: Update report
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          branch: example-patches
+          delete-branch: true
+          title: '[Example] Auto-PR GHA'
+          body: |
+            Update report
+            - Auto PR to add *today's* date to test.txt
+          
+          labels: |
+            autopr
+          assignees: mikewu-tl
+          reviewers: mikewu-tl
+          team-reviewers: |
+            owners
+          milestone: 1
+          draft: false
