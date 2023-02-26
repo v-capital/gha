@@ -34,7 +34,4 @@ jobs:
             autopr
           assignees: mikewu-tl
           reviewers: mikewu-tl
-          team-reviewers: |
-            owners
-          milestone: 1
           draft: false
